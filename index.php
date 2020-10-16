@@ -45,6 +45,7 @@
                echo "Successfull LOGIN";
 			   echo "<br>";
                echo '<a href="view_comment.php">View Comments</a>';
+               include('view_comment.php');
 
             } else {
 			    // Invalid Username or Password

@@ -1,5 +1,10 @@
 <?php
     // Check if already logged in
+	if (!isset($_SESSION['login_username'])) {
+    	session_start();;
+	}
+
+    // Check if already logged in
 	//if (!isset($_SESSION['login_username'])) {
     //	header("Location: index.php");
 	//}
