@@ -1,10 +1,10 @@
 
-
 <?php
 
     // Check if already logged in
 	if (!isset($_SESSION['login_username'])) {
-    	session_start();;
+    	session_start();
+        $username = $_SESSION["login_username"];
 	}
 
 ?>

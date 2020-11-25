@@ -1,12 +1,12 @@
 <?php
-	// Start session
-    $lifetime = 60 * 60 * 24 * 14;    // 2 weeks in seconds
-    session_set_cookie_params($lifetime, '/');
-    session_start();
+	
 
 	// Check if already logged in
 	if (isset($_SESSION['login_username'])) {
     	header("Location: index.php");
+	} else {
+	    // Start session
+        session_start();
 	}
 
 	$msg1 = "";
@@ -40,12 +40,12 @@
 
 			//Determine if Username and Password are correct
             if ($statement->rowCount()>0) {
-               $_SESSION['login_username'] = $input['login_username'];
+               $username = $input['login_username'];
+               $_SESSION['login_username'] = $username;
             
                echo "Successfull LOGIN";
 			   echo "<br>";
                echo '<a href="view_comment.php">View Comments</a>';
-               include('view_comment.php');
 
             } else {
 			    // Invalid Username or Password
@@ -66,7 +66,7 @@
 			$passwordError = "";
 			
 			// Determine if Password meets requirements
-			if (strlen($input['password']) <= '7') {
+			if (strlen($input['password']) < '7') {
 				$passwordError = "Your Password Must Contain At Least 8 Characters!";
 			} elseif (!preg_match("#[0-9]+#", $input['password'])) {
 				$passwordError = "Your Password Must Contain At Least 1 Number!";
